@@ -1,0 +1,48 @@
+.containerStyle {
+    display: inline-grid;
+    column-gap: 2rem;
+    grid-template-columns: 8fr 1fr 1fr;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.logo {
+    min-height: 20px !important;
+}
+
+.youtubeBorder, .twitchBorder, .tiktokBorder, 
+.kickBorder, .rumbleBorder {
+    border-right: #000 solid 20px;
+}
+
+.youtubeBorder {
+    border-color: var(--youtube);
+}
+
+.twitchBorder {
+    border-color: var(--twitch);
+}
+
+.tiktokBorder {
+    background: linear-gradient(white, white) padding-box,
+                var(--tiktok) border-box;
+    border-color: transparent;
+}
+
+.kickBorder {
+    border-color: var(--kick);
+}
+
+.rumbleBorder {
+    border-color: var(--rumble);
+}
+
+.streamer {
+    grid-template-columns: 20px 1fr;
+    display: grid;
+    align-items: center;
+}
