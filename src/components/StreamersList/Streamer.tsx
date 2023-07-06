@@ -15,7 +15,7 @@ type StreamerProps = {
 }
 
 const Streamer: FC<StreamerProps> = ({ streamer }) => {
-  const logo = platformLogo(streamer.platform)
+  const logo = platformLogo(streamer.platform!)
 
   return (
     <div className={`text-xl gap-x-3 ${s.streamer}`}>
