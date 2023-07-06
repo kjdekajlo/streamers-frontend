@@ -1,6 +1,5 @@
-import { FC, FormEvent, MouseEventHandler, useState } from "react"
+import { FC, useState } from "react"
 import StreamerType from "../types/streamer"
-import { socket } from "../contexts/WebSocket"
 
 const labelStyle = () => {
     return 'flex flex-col'
@@ -16,36 +15,54 @@ const SubmitStreamer: FC = () => {
   const [platform, setPlatform] = useState('')
   const [description, setDescription] = useState('')
 
-  const clearStreamer = () => {
+  const clearForm = () => {
     setStreamerName('')
     setPlatform('')
     setDescription('')
   }
 
   const createStreamer = async (streamer: StreamerType) => {
-    await fetch('http://localhost:4000/streamers', {
+      fetch('http://localhost:4000/streamers', {
       method: 'POST',
       body: JSON.stringify(streamer),
       headers: {
         'Content-Type': 'application/json'
       }})
-  } 
+  }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const isCreatable = () => {
+    if (streamerName === '') {
+      alert('Streamer should have a valid name!')
+      return false
+    } else if (platform === '') {
+      alert('Streamer should a platform selected!')
+      return false
+    } else if (description === '') {
+        alert('Streamer should have a valid description!')
+      return false
+    }
+    
+    return true
+  }
+
+  const handleSubmit = (e: any) => {
 
     e.preventDefault()
 
-    let newStreamer: StreamerType = {
-      name: streamerName,
-      description: description,
-      downvotes: 0,
-      upvotes: 0,
-      platform: platform
-    }
+    if (isCreatable()) {
+      let newStreamer: StreamerType = {
+        name: streamerName,
+        description: description,
+        downvotes: 0,
+        upvotes: 0,
+        platform: platform
+      }
 
-    createStreamer(newStreamer)
-    clearStreamer()
+      createStreamer(newStreamer)
+      clearForm()
+    }
   }
+
   
     return (
         <div>
@@ -89,7 +106,3 @@ const SubmitStreamer: FC = () => {
   }
   
   export default SubmitStreamer
-
-
-
-
