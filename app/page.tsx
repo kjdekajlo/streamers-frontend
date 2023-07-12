@@ -5,9 +5,9 @@ import SubmitStreamer from "@/src/components/SubmitStreamer";
 
 import home from './home.module.scss'
 
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { WebSocketContext, WebSocketProvider } from '@/src/contexts/WebSocket'
+import { socket } from '@/src/WebSocket'
 
 export default function Page() {
 
@@ -23,30 +23,27 @@ export default function Page() {
       })
   }
 
-  const socket = useContext(WebSocketContext)
-
   useEffect(() => {
-    fetchStreamers()
-
     socket.on('onStreamersChanged', () => {
       fetchStreamers()
     })
-    return () => {
+
+    fetchStreamers()
+
+    return function cleanup() {
       socket.off('onStreamersChanged')
-      socket.close()
     }
-  }, [socket])
+
+  }, [])
 
   
   return (
-  <main className={home.main}>
+    <main className={home.main}>
       <aside>
         <SubmitStreamer />
       </aside>
       <aside>
-        <WebSocketProvider value={socket}>
-          <StreamersList streamers={streamers}/>
-        </WebSocketProvider>
+        <StreamersList streamers={streamers}/>
       </aside>
     </main>
   )
