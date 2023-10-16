@@ -1,20 +1,20 @@
 'use client';
 
 import Image from 'next/image'
-import StreamerPhoto from '@/src/assets/streamer-photo.jpg'
+import Flower from '@/src/assets/flower.jpg'
 import platformLogo from '@/src/utils/platformLogo';
-import StreamerType from '@/src/types/streamer';
+import { StreamerType } from '@/src/types/streamer';
 import BackButton from '@/src/components/BackButton';
 
 async function getStreamerById(id: string) {
-    const res = await fetch(`http://localhost:4000/streamer/${id}`);
-  
-    if (!res.ok) {
-      throw new Error('Failed to fetch data')
-    }
-  
-    return res.json();
+  const res = await fetch(`http://localhost:4000/streamer/${id}`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
   }
+
+  return res.json();
+}
 
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <main className="p-5 text-base">
         <BackButton/>
       <div className="flex flex-row items-center gap-x-5">
-        <Image priority width={128} src={StreamerPhoto} alt={streamer.name} className='rounded-lg'/>
+        <Image priority width={128} src={Flower} alt={streamer.name} className='rounded-lg'/>
         <div>
           <h1 className='text-2xl'>{streamer.name}</h1>
           <span>Platform: {streamer.platform}</span>

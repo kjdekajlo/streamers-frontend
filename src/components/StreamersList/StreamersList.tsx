@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 import Streamer from './Streamer'
-import StreamerType from '@/src/types/streamer'
+import { StreamerType } from '@/src/types/streamer'
 import s from './StreamersList.module.scss'
 
 import Image from 'next/image'
@@ -16,7 +16,7 @@ type StreamersListProp = {
 const StreamersList: FC<StreamersListProp> = ({ streamers }) => {
 
   const streamersList = streamers.map((streamer) => (
-    <Streamer key={streamer._id} streamer={streamer} />
+      <Streamer streamer={streamer} key={streamer._id} />
   ))
 
   return (
@@ -24,10 +24,10 @@ const StreamersList: FC<StreamersListProp> = ({ streamers }) => {
       <div className="mb-[22px] text-3xl">Streamers</div>
       <div className={s.votes}>
         <p></p>
-        <Image src={DownVote} alt="thumbs down / downvote" height={38} width={38} className='rotate-180'/>
-        <Image src={UpVote} alt="thumbs up / upvote" height={40} width={40}/>
+        <Image src={DownVote} alt="Downvote" height={38} width={38} className='rotate-180'/>
+        <Image src={UpVote} alt="Upvote" height={40} width={40}/>
       </div>
-      <div className={s.streamersList}>{streamersList}</div>
+      <div className={s.streamersList}>{streamersList}</div> 
     </div>
   )
 }

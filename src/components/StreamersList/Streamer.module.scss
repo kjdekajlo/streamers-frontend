@@ -6,7 +6,6 @@
     color: black;
     background-color: white;
     width: 100%;
-    cursor: pointer;
     padding: 10px 20px;
 }
 
@@ -42,7 +41,7 @@
 }
 
 .streamer {
-    grid-template-columns: 20px 1fr;
+    grid-template-columns: 20px 1fr 20px;
     display: grid;
     align-items: center;
 }

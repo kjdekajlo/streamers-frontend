@@ -35,10 +35,8 @@ export default function Page() {
     }
 
   }, [])
-
-  
   return (
-    <main className={home.main}>
+    <main className="flex justify-around flex-wrap gap-16 py-16 px-4">
       <aside>
         <SubmitStreamer />
       </aside>

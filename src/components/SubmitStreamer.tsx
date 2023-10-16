@@ -1,18 +1,18 @@
 import { FC, useState } from "react"
-import StreamerType from "../types/streamer"
+import { StreamerType, StreamingPlatform } from "../types/streamer"
 
 const labelStyle = () => {
-    return 'flex flex-col'
+  return 'flex flex-col'
 }
 
 const inputStyle = () => {
-    return 'text-black px-4 py-2 rounded-[10px]'
+  return 'text-black px-4 py-2 rounded-[10px]'
 }
 
 const SubmitStreamer: FC = () => {
 
   const [streamerName, setStreamerName] = useState('')
-  const [platform, setPlatform] = useState('')
+  const [platform, setPlatform] = useState<'' | StreamingPlatform>('')
   const [description, setDescription] = useState('')
 
   const clearForm = () => {
@@ -22,7 +22,7 @@ const SubmitStreamer: FC = () => {
   }
 
   const createStreamer = async (streamer: StreamerType) => {
-      fetch('http://localhost:4000/streamers', {
+    fetch('http://localhost:4000/streamers', {
       method: 'POST',
       body: JSON.stringify(streamer),
       headers: {
@@ -65,7 +65,7 @@ const SubmitStreamer: FC = () => {
 
   
     return (
-        <div>
+        <div className="w-[509px]">
         <div className="text-3xl mb-14">Add a new streamer</div>
         <form className="flex flex-col text-2xl gap-y-2">
           <label className={labelStyle()}>
