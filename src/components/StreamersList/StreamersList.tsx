@@ -20,12 +20,12 @@ const StreamersList: FC<StreamersListProp> = ({ streamers }) => {
   ))
 
   return (
-    <div>
+    <div className='w-[509px]'>
       <div className="mb-[22px] text-3xl">Streamers</div>
       <div className={s.votes}>
         <p></p>
-        <Image src={DownVote} alt="Downvote" height={38} width={38} className='rotate-180'/>
-        <Image src={UpVote} alt="Upvote" height={40} width={40}/>
+        <Image src={DownVote} alt="Downvote" height={38} width={38} className='rotate-180 col-start-3'/>
+        <Image src={UpVote} alt="Upvote" height={40} width={40} className='col-start-4 ml-[-30px]'/>
       </div>
       <div className={s.streamersList}>{streamersList}</div> 
     </div>
