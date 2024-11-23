@@ -1,4 +1,4 @@
-export type StreamerType = {
+export type Streamer = {
   _id: string,
   name: string
   description: string

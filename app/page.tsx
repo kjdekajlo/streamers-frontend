@@ -8,19 +8,28 @@ import home from './home.module.scss'
 import { useEffect, useState } from 'react'
 
 import { socket } from '@/src/WebSocket'
+import { Streamer } from "@/src/types/streamer";
 
 export default function Page() {
 
-  const [streamers, setStreamers] = useState([])
+  const [streamers, setStreamers] = useState<Streamer[]>([])
 
-  const fetchStreamers = () => {
-    fetch('http://localhost:4000/streamers')
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setStreamers(data)
-      })
+  const fetchStreamers = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/streamers')
+      const data = await response.json()
+      setStreamers(data.streamers)
+    } catch {
+      setStreamers([
+        {_id: 'uvgfy',
+        name: 'Name',
+        description: 'Description',
+        downvotes: 2,
+        upvotes: 2,
+        platform: 'youtube'
+        }
+      ])
+    }
   }
 
   useEffect(() => {
